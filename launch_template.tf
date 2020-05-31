@@ -4,10 +4,9 @@ data "template_file" "userdata_pull_images" {
   template = "${file("${path.module}/data/userdata_pull_images.sh.tpl")}"
 
   vars {
-    image_name      = "${replace(element(var.images, count.index), "/:.*/", "")}"
-    image_tag       = "${replace(replace(element(var.images, count.index), replace(element(var.images, count.index), "/:.*/", ""), ""), "/^:/", "")}"
-    registry_url    = "${var.registry_url}"
-    registry_region = "${var.registry_region}"
+    image_name   = "${replace(element(var.images, count.index), "/:.*/", "")}"
+    image_tag    = "${replace(replace(element(var.images, count.index), replace(element(var.images, count.index), "/:.*/", ""), ""), "/^:/", "")}"
+    registry_url = "${var.registry_url}"
   }
 }
 
@@ -17,6 +16,7 @@ data "template_file" "userdata" {
   vars {
     docker_compose_content = "${var.docker_compose_content}"
     registry_id            = "${var.registry_id}"
+    registry_region        = "${var.registry_region}"
     userdata_pull_images   = "${join("\n", data.template_file.userdata_pull_images.*.rendered)}"
   }
 }
