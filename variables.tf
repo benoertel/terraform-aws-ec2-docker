@@ -1,9 +1,19 @@
+variable "docker_compose_content" {}
+
 variable "iam_profile_name" {
   default = "bsx-cluster-instance"
 }
 
 variable "images" {
   type = "list"
+}
+
+variable "registry_id" {
+  default = "509581711139"
+}
+
+variable "registry_region" {
+  default = "eu-central-1"
 }
 
 variable "registry_url" {

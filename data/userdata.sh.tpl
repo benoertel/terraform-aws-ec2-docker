@@ -2,7 +2,7 @@
 set -euxo pipefail
 
 echo "[INFO] Pulling docker image"
-aws ecr get-login --registry-ids ${registry_id} --no-include-email --region eu-central-1 | sh
+aws ecr get-login --registry-ids ${registry_id} --no-include-email --region ${registry_region} | sh
 ${userdata_pull_images}
 
 echo "[INFO] Writing docker-compose file"

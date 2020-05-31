@@ -14,8 +14,8 @@ data "template_file" "userdata" {
   template = "${file("${path.module}/data/userdata.sh.tpl")}"
 
   vars {
-    docker_compose_content = "${file("${path.module}/data/docker-compose.yml")}"
-    registry_id            = "509581711139"
+    docker_compose_content = "${var.docker_compose_content}"
+    registry_id            = "${var.registry_id}"
     userdata_pull_images   = "${join("\n", data.template_file.userdata_pull_images.*.rendered)}"
   }
 }

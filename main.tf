@@ -1,6 +1,6 @@
 data "aws_ami" "bosix_docker" {
   most_recent = true
-  owners      = ["509581711139"]
+  owners      = ["${var.registry_id}"]
 
   filter {
     name   = "name"
