@@ -1,0 +1,12 @@
+version: '3'
+services:
+  web:
+    image: bnjmnrtl/bosix-web:terraform
+    networks:
+      - bosix
+    restart: always
+    ports:
+      - 80:80
+
+networks:
+  bosix:
