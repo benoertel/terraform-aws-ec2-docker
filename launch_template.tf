@@ -4,9 +4,10 @@ data "template_file" "userdata_pull_images" {
   template = "${file("${path.module}/data/userdata_pull_images.sh.tpl")}"
 
   vars {
-    image_name   = "${replace(element(var.images, count.index), "/:.*/", "")}"
-    image_tag    = "${replace(replace(element(var.images, count.index), replace(element(var.images, count.index), "/:.*/", ""), ""), "/^:/", "")}"
-    registry_url = "${var.registry_url}"
+    image_name      = "${replace(element(var.images, count.index), "/:.*/", "")}"
+    image_tag       = "${replace(replace(element(var.images, count.index), replace(element(var.images, count.index), "/:.*/", ""), ""), "/^:/", "")}"
+    registry_url    = "${var.registry_url}"
+    registry_region = "${var.registry_region}"
   }
 }
 
