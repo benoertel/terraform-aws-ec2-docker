@@ -10,4 +10,4 @@ maven-eclipse.xml
 *.iws
 .DS_Store
 vendor/
-/.terraform/.terraform
+/.terraform

@@ -3,9 +3,17 @@ data "template_file" "userdata_pull_images" {
 
   template = file("${path.module}/data/userdata_pull_images.sh.tpl")
 
-  vars {
-    image_name   = replace(element(var.images, count.index), "/:.*/", "")
-    image_tag    = replace(replace(element(var.images, count.index), replace(element(var.images, count.index), "/:.*/", ""), ""), "/^:/", "")
+  vars = {
+    image_name = replace(element(var.images, count.index), "/:.*/", "")
+    image_tag = replace(
+      replace(
+        element(var.images, count.index),
+        replace(element(var.images, count.index), "/:.*/", ""),
+        "",
+      ),
+      "/^:/",
+      "",
+    )
     registry_url = var.registry_url
   }
 }
@@ -13,7 +21,7 @@ data "template_file" "userdata_pull_images" {
 data "template_file" "userdata" {
   template = file("${path.module}/data/userdata.sh.tpl")
 
-  vars {
+  vars = {
     docker_compose_content = var.docker_compose_content
     registry_id            = var.registry_id
     registry_region        = var.registry_region
@@ -38,7 +46,7 @@ resource "aws_launch_template" "instance" {
   tag_specifications {
     resource_type = "volume"
 
-    tags {
+    tags = {
       Env          = var.env
       ManagedBy    = "Terraform"
       Name         = local.name_with_prefix
@@ -49,7 +57,7 @@ resource "aws_launch_template" "instance" {
   tag_specifications {
     resource_type = "instance"
 
-    tags {
+    tags = {
       Env          = var.env
       ManagedBy    = "Terraform"
       Name         = local.name_with_prefix
@@ -57,7 +65,7 @@ resource "aws_launch_template" "instance" {
     }
   }
 
-  tags {
+  tags = {
     Env          = var.env
     ManagedBy    = "Terraform"
     Name         = local.name_with_prefix
