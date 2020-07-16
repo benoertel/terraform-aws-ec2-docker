@@ -1,6 +1,6 @@
 data "aws_ami" "bosix_docker" {
   most_recent = true
-  owners      = ["${var.registry_id}"]
+  owners      = [var.registry_id]
 
   filter {
     name   = "name"
@@ -9,9 +9,10 @@ data "aws_ami" "bosix_docker" {
 }
 
 data "aws_security_group" "cluster_instance" {
-  name = "${var.sg_name}"
+  name = var.sg_name
 }
 
 data "aws_iam_instance_profile" "cluster_instance" {
-  name = "${var.iam_profile_name}"
+  name = var.iam_profile_name
 }
+

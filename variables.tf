@@ -1,11 +1,12 @@
-variable "docker_compose_content" {}
+variable "docker_compose_content" {
+}
 
 variable "iam_profile_name" {
   default = "bsx-cluster-instance"
 }
 
 variable "images" {
-  type = "list"
+  type = list(string)
 }
 
 variable "registry_id" {
@@ -32,7 +33,8 @@ variable "instance_type" {
   default = "t3.micro"
 }
 
-variable "name" {}
+variable "name" {
+}
 
 variable "rsa_public_key_name" {
   default = "bsx-bosix"
@@ -43,10 +45,13 @@ variable "sg_name" {
 }
 
 variable "subnet_ids" {
-  type    = "list"
+  type    = list(string)
   default = []
 }
 
-variable "stack_version" {}
+variable "stack_version" {
+}
 
-variable "vpc_id" {}
+variable "vpc_id" {
+}
+
